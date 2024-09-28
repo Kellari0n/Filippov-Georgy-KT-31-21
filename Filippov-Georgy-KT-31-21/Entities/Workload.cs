@@ -1,5 +1,5 @@
 ﻿namespace Filippov_Georgy_KT_31_21.Entities {
-    public class Workload {
+    public class Workload : IEntity {
         public int Id { get; set; }
 
         public int StudyHoursCount { get; set; }

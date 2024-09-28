@@ -1,4 +1,5 @@
 using Filippov_Georgy_KT_31_21.Context;
+using Filippov_Georgy_KT_31_21.ServiceExtentions;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -16,8 +17,9 @@ internal class Program {
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddStudyServices();
 
-            builder.Services.AddDbContext<StudyDbContext>(options => { 
+            builder.Services.AddDbContextFactory<StudyDbContext>(options => { 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default")); 
             });
 

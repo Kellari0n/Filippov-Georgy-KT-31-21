@@ -1,5 +1,5 @@
 ﻿namespace Filippov_Georgy_KT_31_21.Entities {
-    public class Teacher {
+    public class Teacher : IEntity {
         public int Id { get; set; }
 
         public string SecondName { get; set; } = string.Empty;
