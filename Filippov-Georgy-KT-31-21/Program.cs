@@ -1,4 +1,5 @@
 using Filippov_Georgy_KT_31_21.Context;
+using Filippov_Georgy_KT_31_21.Middlewares;
 using Filippov_Georgy_KT_31_21.ServiceExtentions;
 
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,8 @@ internal class Program {
             }
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
 
             app.MapControllers();
 
