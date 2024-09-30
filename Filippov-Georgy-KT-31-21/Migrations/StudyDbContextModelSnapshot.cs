@@ -37,7 +37,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Degrees");
+                    b.ToTable("Degrees", (string)null);
 
                     b.HasData(
                         new
@@ -73,7 +73,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                     b.HasIndex("HeadId")
                         .IsUnique();
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
 
                     b.HasData(
                         new
@@ -122,7 +122,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Disciplines");
+                    b.ToTable("Disciplines", (string)null);
 
                     b.HasData(
                         new
@@ -166,7 +166,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
 
                     b.HasData(
                         new
@@ -256,7 +256,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Teachers");
+                    b.ToTable("Teachers", (string)null);
 
                     b.HasData(
                         new
@@ -354,7 +354,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Workloads");
+                    b.ToTable("Workloads", (string)null);
 
                     b.HasData(
                         new

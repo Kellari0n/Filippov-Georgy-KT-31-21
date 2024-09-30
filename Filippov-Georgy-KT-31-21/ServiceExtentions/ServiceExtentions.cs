@@ -5,7 +5,7 @@ namespace Filippov_Georgy_KT_31_21.ServiceExtentions {
     public static class ServiceExtentions {
         public static IServiceCollection AddStudyServices(this IServiceCollection services) {
             services.AddScoped<IDisciplineService, DisciplineService>();
-
+            services.AddScoped<IWorkloadService, WorkloadService>();
             return services;
         }
     }
