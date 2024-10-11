@@ -1,16 +1,24 @@
-﻿using Filippov_Georgy_KT_31_21.Entities;
+﻿using Filippov_Georgy_KT_31_21.Context.Helpers;
+using Filippov_Georgy_KT_31_21.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Filippov_Georgy_KT_31_21.Context.Configurations {
     public class DegreeConfiguration : IEntityTypeConfiguration<Degree> {
+        private const string _tableName = "cs_degree";
         public void Configure(EntityTypeBuilder<Degree> builder) {
-            builder.HasKey(e => e.Id);
+            builder.ToTable(_tableName)
+                .HasKey(e => e.Id)
+                .HasName($"pk_{_tableName}_degree_id");
 
             builder.Property(e => e.Id)
-                .UseIdentityColumn(1, 1);
+                .HasColumnName("degree_id")
+                .HasColumnType(ColumnType.Int)
+                .ValueGeneratedOnAdd();
 
             builder.Property(e => e.Name)
+                .HasColumnName("c_name")
+                .HasColumnType(ColumnType.String)
                 .IsRequired()
                 .HasMaxLength(50);
 

@@ -1,17 +1,25 @@
-﻿using Filippov_Georgy_KT_31_21.Entities;
+﻿using Filippov_Georgy_KT_31_21.Context.Helpers;
+using Filippov_Georgy_KT_31_21.Entities;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Filippov_Georgy_KT_31_21.Context.Configurations {
     public class PostConfiguration : IEntityTypeConfiguration<Post> {
+        private const string _tableName = "cs_post";
         public void Configure(EntityTypeBuilder<Post> builder) {
-            builder.HasKey(e => e.Id);
+            builder.ToTable(_tableName)
+                .HasKey(e => e.Id)
+                .HasName($"pk_{_tableName}_post_id");
 
             builder.Property(e => e.Id)
-                .UseIdentityColumn(1, 1);
+                .HasColumnName("post_id")
+                .HasColumnType(ColumnType.Int)
+                .ValueGeneratedOnAdd();
 
             builder.Property(e => e.Name)
+                .HasColumnName("c_name")
+                .HasColumnType(ColumnType.String)
                 .IsRequired()
                 .HasMaxLength(50);
             

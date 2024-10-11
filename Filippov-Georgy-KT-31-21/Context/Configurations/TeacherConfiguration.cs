@@ -1,50 +1,88 @@
-﻿using Filippov_Georgy_KT_31_21.Entities;
+﻿using Filippov_Georgy_KT_31_21.Context.Helpers;
+using Filippov_Georgy_KT_31_21.Entities;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Filippov_Georgy_KT_31_21.Context.Configurations {
     public class TeacherConfiguration : IEntityTypeConfiguration<Teacher> {
+        private const string _tableName = "cd_teachers";
         public void Configure(EntityTypeBuilder<Teacher> builder) {
-            builder.HasKey(e => e.Id);
+            builder.HasKey(e => e.Id)
+                .HasName($"pk_{_tableName}_teacher_id");
 
             builder.Property(e => e.Id)
-                .UseIdentityColumn(1, 1);
+                .HasColumnName("teacher_id")
+                .HasColumnType(ColumnType.Int)
+                .ValueGeneratedOnAdd();
 
             builder.Property(e => e.SecondName)
+                .HasColumnName("c_second_name")
+                .HasColumnType(ColumnType.String)
                 .HasMaxLength(50)
                 .IsRequired();
 
             builder.Property(e => e.FirstName)
+                .HasColumnName("c_first_name")
+                .HasColumnType(ColumnType.String)
                 .HasMaxLength(50)
                 .IsRequired();
 
             builder.Property(e => e.LastName)
+                .HasColumnName("c_last_name")
+                .HasColumnType(ColumnType.String)
                 .HasMaxLength(50)
                 .IsRequired();
 
             builder.Property(e => e.Email)
+                .HasColumnName("c_email")
+                .HasColumnType(ColumnType.String)
                 .HasMaxLength(50);
 
             builder.Property(e => e.Phone)
+                .HasColumnName("c_phone")
+                .HasColumnType(ColumnType.String)
                 .HasMaxLength(15);
 
             builder.Property(e => e.Birthdate)
+                .HasColumnName("d_birthdate")
+                .HasColumnType(ColumnType.DateTime)
                 .IsRequired();
 
             builder.Property(e => e.EmploymentDate)
+                .HasColumnName("d_employment_date")
+                .HasColumnType(ColumnType.DateTime)
                 .IsRequired();
 
-            builder.HasOne(e => e.Post)
+            builder.Property(e => e.PostId)
+                .HasColumnName("f_post_id")
+                .HasColumnType(ColumnType.Int)
+                .IsRequired();
+
+            builder.Property(e => e.DegreeId)
+                .HasColumnName("f_degree_id")
+                .HasColumnType(ColumnType.Int)
+                .IsRequired(false);
+
+            builder.ToTable(_tableName)
+                .HasOne(e => e.Post)
                 .WithMany()
                 .HasForeignKey(e => e.PostId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasConstraintName("fk_f_post_id")
+                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(e => e.Degree)
+            builder.ToTable(_tableName)
+                .HasOne(e => e.Degree)
                 .WithMany()
                 .HasForeignKey(e => e.DegreeId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasConstraintName("fk_f_degree_id")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.ToTable(_tableName)
+                .HasIndex(e => e.PostId, $"idx_{_tableName}_fk_f_post_id");
+
+            builder.ToTable(_tableName)
+                .HasIndex(e => e.DegreeId, $"idx_{_tableName}_fk_f_degree_id");
 
             builder.HasData(
                 new Teacher {

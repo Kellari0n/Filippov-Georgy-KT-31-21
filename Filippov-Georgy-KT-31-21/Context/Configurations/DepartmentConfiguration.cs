@@ -1,24 +1,36 @@
-﻿using Filippov_Georgy_KT_31_21.Entities;
+﻿using Filippov_Georgy_KT_31_21.Context.Helpers;
+using Filippov_Georgy_KT_31_21.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Filippov_Georgy_KT_31_21.Context.Configurations {
     public class DepartmentConfiguration : IEntityTypeConfiguration<Department> {
+        private const string _tableName = "cs_department";
         public void Configure(EntityTypeBuilder<Department> builder) {
-            builder.HasKey(e => e.Id);
+            builder.HasKey(e => e.Id)
+                .HasName($"pk_{_tableName}_department_id");
 
             builder.Property(e => e.Id)
-                .UseIdentityColumn(1, 1);
+                .HasColumnName($"degree_id")
+                .HasColumnType(ColumnType.Int)
+                .ValueGeneratedOnAdd();
 
             builder.Property(e => e.Name)
+                .HasColumnName($"c_name")
+                .HasColumnType(ColumnType.String)
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.HasOne(e => e.Head)
+            builder.Property(e => e.HeadId)
+                .HasColumnName($"f_head_id")
+                .HasColumnType(ColumnType.Int);
+
+            builder.ToTable(_tableName)
+                .HasOne(e => e.Head)
                 .WithOne()
                 .HasForeignKey<Department>(e => e.HeadId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasConstraintName($"fk_f_head_id")
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasData(
                 new Department {

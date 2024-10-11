@@ -17,7 +17,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -26,18 +26,21 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("degree_id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_cs_degree_degree_id");
 
-                    b.ToTable("Degrees");
+                    b.ToTable("cs_degree", (string)null);
 
                     b.HasData(
                         new
@@ -56,24 +59,28 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("degree_id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("HeadId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("f_head_id");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_cs_department_department_id");
 
                     b.HasIndex("HeadId")
                         .IsUnique();
 
-                    b.ToTable("Departments");
+                    b.ToTable("cs_department", (string)null);
 
                     b.HasData(
                         new
@@ -106,23 +113,27 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("discipline_id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("f_department_id");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_cd_discipline_discipline_id");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasIndex(new[] { "DepartmentId" }, "idx_cd_discipline_fk_f_department_id");
 
-                    b.ToTable("Disciplines");
+                    b.ToTable("cd_discipline", (string)null);
 
                     b.HasData(
                         new
@@ -155,18 +166,21 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("post_id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_cs_post_post_id");
 
-                    b.ToTable("Posts");
+                    b.ToTable("cs_post", (string)null);
 
                     b.HasData(
                         new
@@ -225,54 +239,65 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("teacher_id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Birthdate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime")
+                        .HasColumnName("d_birthdate");
 
                     b.Property<int?>("DegreeId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("f_degree_id");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_email");
 
                     b.Property<DateTime>("EmploymentDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime")
+                        .HasColumnName("d_employment_date");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_first_name");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_last_name");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_phone");
 
                     b.Property<int>("PostId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("f_post_id");
 
                     b.Property<string>("SecondName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("c_second_name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_cd_teachers_teacher_id");
 
-                    b.HasIndex("DegreeId");
+                    b.HasIndex(new[] { "DegreeId" }, "idx_cd_teachers_fk_f_degree_id");
 
-                    b.HasIndex("PostId");
+                    b.HasIndex(new[] { "PostId" }, "idx_cd_teachers_fk_f_post_id");
 
-                    b.ToTable("Teachers");
+                    b.ToTable("cd_teachers", (string)null);
 
                     b.HasData(
                         new
@@ -381,26 +406,31 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("workload_id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("DisciplineId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("f_discipline_id");
 
                     b.Property<int>("StudyHoursCount")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("n_study_hours_count");
 
                     b.Property<int>("TeacherId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("f_teacher_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_cd_workload_workload_id");
 
-                    b.HasIndex("DisciplineId");
+                    b.HasIndex(new[] { "DisciplineId" }, "idx_cd_workload_fk_f_discipline_id");
 
-                    b.HasIndex("TeacherId");
+                    b.HasIndex(new[] { "TeacherId" }, "idx_cd_workload_fk_f_teacher_id");
 
-                    b.ToTable("Workloads");
+                    b.ToTable("cd_workload", (string)null);
 
                     b.HasData(
                         new
@@ -438,8 +468,9 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                     b.HasOne("Filippov_Georgy_KT_31_21.Entities.Teacher", "Head")
                         .WithOne()
                         .HasForeignKey("Filippov_Georgy_KT_31_21.Entities.Department", "HeadId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_f_head_id");
 
                     b.Navigation("Head");
                 });
@@ -449,8 +480,9 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                     b.HasOne("Filippov_Georgy_KT_31_21.Entities.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_f_department_id");
 
                     b.Navigation("Department");
                 });
@@ -460,13 +492,15 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                     b.HasOne("Filippov_Georgy_KT_31_21.Entities.Degree", "Degree")
                         .WithMany()
                         .HasForeignKey("DegreeId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("fk_f_degree_id");
 
                     b.HasOne("Filippov_Georgy_KT_31_21.Entities.Post", "Post")
                         .WithMany()
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_f_post_id");
 
                     b.Navigation("Degree");
 
@@ -479,13 +513,15 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                         .WithMany()
                         .HasForeignKey("DisciplineId")
                         .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_f_discipline_id");
 
                     b.HasOne("Filippov_Georgy_KT_31_21.Entities.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_f_teacher_id");
 
                     b.Navigation("Discipline");
 

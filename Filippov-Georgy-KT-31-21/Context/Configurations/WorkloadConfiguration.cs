@@ -1,29 +1,53 @@
-﻿using Filippov_Georgy_KT_31_21.Entities;
+﻿using Filippov_Georgy_KT_31_21.Context.Helpers;
+using Filippov_Georgy_KT_31_21.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Filippov_Georgy_KT_31_21.Context.Configurations {
     public class WorkloadConfiguration : IEntityTypeConfiguration<Workload> {
+        private const string _tableName = "cd_workload";
         public void Configure(EntityTypeBuilder<Workload> builder) {
-            builder.HasKey(e => e.Id);
+            builder
+                .HasKey(e => e.Id)
+                .HasName($"pk_{_tableName}_workload_id");
 
             builder.Property(e => e.Id)
-                .UseIdentityColumn(1, 1);
+                .HasColumnName("workload_id")
+                .HasColumnType(ColumnType.Int)
+                .ValueGeneratedOnAdd();
 
             builder.Property(e => e.StudyHoursCount)
+                .HasColumnName("n_study_hours_count")
+                .HasColumnType(ColumnType.Int)
                 .IsRequired();
 
-            builder.HasOne(e => e.Teacher)
+            builder.Property(e => e.TeacherId)
+                .HasColumnName("f_teacher_id")
+                .HasColumnType(ColumnType.Int);
+
+            builder.Property(e => e.DisciplineId)
+                .HasColumnName("f_discipline_id")
+                .HasColumnType(ColumnType.Int);
+
+            builder.ToTable(_tableName)
+                .HasOne(e => e.Teacher)
                 .WithMany()
                 .HasForeignKey(e => e.TeacherId)
-                .IsRequired()
+                .HasConstraintName("fk_f_teacher_id")
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(e => e.Discipline)
+            builder.ToTable(_tableName)
+                .HasOne(e => e.Discipline)
                 .WithMany()
                 .HasForeignKey(e => e.DisciplineId)
-                .IsRequired()
+                .HasConstraintName("fk_f_discipline_id")
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.ToTable(_tableName)
+                .HasIndex(e => e.TeacherId, $"idx_{_tableName}_fk_f_teacher_id");
+
+            builder.ToTable(_tableName)
+                .HasIndex(e => e.DisciplineId, $"idx_{_tableName}_fk_f_discipline_id");
 
             builder.HasData(
                 new Workload {
