@@ -11,7 +11,7 @@ namespace Filippov_Georgy_KT_31_21.Context.Configurations {
                 .HasName($"pk_{_tableName}_department_id");
 
             builder.Property(e => e.Id)
-                .HasColumnName($"degree_id")
+                .HasColumnName($"degree_id")//вузфкезьуте
                 .HasColumnType(ColumnType.Int)
                 .ValueGeneratedOnAdd();
 

@@ -50,7 +50,7 @@ namespace Filippov_Georgy_KT_31_21.Context.Configurations {
                 .IsRequired();
 
             builder.Property(e => e.EmploymentDate)
-                .HasColumnName("d_employment_date")
+                .HasColumnName("d_employment")
                 .HasColumnType(ColumnType.DateTime)
                 .IsRequired();
 

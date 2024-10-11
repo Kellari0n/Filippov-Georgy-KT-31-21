@@ -35,7 +35,7 @@ namespace Filippov_Georgy_KT_31_21.Services.Implementation
             }
         }
 
-        public async Task<IEnumerable<Workload>> GetAsync(FilterModel<Workload> filter, CancellationToken cancellationToken = default) {
+        public async Task<I<Workload>> GetAsync(FilterModel<Workload> filter, CancellationToken cancellationToken = default) {
             using (var context = await _dbContextFactory.CreateDbContextAsync(cancellationToken)) {
                 return await context.Workloads
                     .AsNoTracking()

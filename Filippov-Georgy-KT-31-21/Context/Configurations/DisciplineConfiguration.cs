@@ -27,7 +27,7 @@ namespace Filippov_Georgy_KT_31_21.Context.Configurations {
 
             builder.ToTable(_tableName)
                 .HasOne(e => e.Department)
-                .WithMany()
+                .WithMany()//
                 .HasForeignKey(e => e.DepartmentId)
                 .HasConstraintName($"fk_f_department_id")
                 .OnDelete(DeleteBehavior.Cascade);

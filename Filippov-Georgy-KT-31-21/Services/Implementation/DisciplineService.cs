@@ -15,7 +15,7 @@ namespace Filippov_Georgy_KT_31_21.Services.Implementation
             _dbContextFactory = dbContextFactory;
         }
 
-        public async Task<IEnumerable<Discipline>> GetAsync(FilterModel<Discipline> filter, CancellationToken cancellationToken = default) {
+        public async Task<Discipline[]> GetAsync(FilterModel<Discipline> filter, CancellationToken cancellationToken = default) {
             using (var context = await _dbContextFactory.CreateDbContextAsync(cancellationToken)) {
                 return await context.Workloads
                     .AsNoTracking()
