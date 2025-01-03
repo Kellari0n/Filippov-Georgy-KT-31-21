@@ -22,7 +22,7 @@ namespace Filippov_Georgy_KT_31_21.Services.Implementation
                     .Include(wl => wl.Discipline)
                     .Include(wl => wl.Teacher)
                     .Filter(filter)
-                    .ToListAsync(cancellationToken);
+                    .ToArrayAsync(cancellationToken);
             }
         }
 

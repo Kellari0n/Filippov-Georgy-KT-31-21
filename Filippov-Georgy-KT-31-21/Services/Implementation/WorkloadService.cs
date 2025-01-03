@@ -35,14 +35,14 @@ namespace Filippov_Georgy_KT_31_21.Services.Implementation
             }
         }
 
-        public async Task<I<Workload>> GetAsync(FilterModel<Workload> filter, CancellationToken cancellationToken = default) {
+        public async Task<Workload[]> GetAsync(FilterModel<Workload> filter, CancellationToken cancellationToken = default) {
             using (var context = await _dbContextFactory.CreateDbContextAsync(cancellationToken)) {
                 return await context.Workloads
                     .AsNoTracking()
                     .Include(wl => wl.Teacher)
                     .Include(wl => wl.Discipline)
                     .Filter(filter)
-                    .ToListAsync(cancellationToken);
+                    .ToArrayAsync(cancellationToken);
             }
         }
     }
