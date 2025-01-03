@@ -1,5 +1,5 @@
 ﻿namespace Filippov_Georgy_KT_31_21.Entities {
-    public interface IEntity {
+    public abstract class AEntity {
         public int Id { get; set; }
     }
 }

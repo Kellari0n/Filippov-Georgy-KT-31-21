@@ -1,9 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 
 namespace Filippov_Georgy_KT_31_21.Entities {
-    public class Teacher : IEntity {
-        public int Id { get; set; }
-
+    public class Teacher : AEntity {
         public string SecondName { get; set; } = string.Empty;
 
         public string FirstName { get; set; } = string.Empty;
