@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filippov-Georgy-KT-31-21", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filippov-Georgy-KT-31-21.Tests", "Filippov-Georgy-KT-31-21.Tests\Filippov-Georgy-KT-31-21.Tests.csproj", "{DB5AB66C-FA7E-4ACB-AE72-645EF150121E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{BFAEA602-319E-4CCF-BC2A-F306D2896FEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
