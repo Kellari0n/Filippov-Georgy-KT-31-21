@@ -17,7 +17,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -60,7 +60,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("degree_id");
+                        .HasColumnName("department_id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
@@ -260,7 +260,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
 
                     b.Property<DateTime>("EmploymentDate")
                         .HasColumnType("datetime")
-                        .HasColumnName("d_employment_date");
+                        .HasColumnName("d_employment");
 
                     b.Property<string>("FirstName")
                         .IsRequired()

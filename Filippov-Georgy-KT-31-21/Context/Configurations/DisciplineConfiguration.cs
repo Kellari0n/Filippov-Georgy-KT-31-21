@@ -22,18 +22,18 @@ namespace Filippov_Georgy_KT_31_21.Context.Configurations {
                 .IsRequired();
 
             builder.Property(e => e.DepartmentId)
-                .HasColumnName("f_discipline_id")
+                .HasColumnName("f_department_id")
                 .HasColumnType(ColumnType.Int);
 
             builder.ToTable(_tableName)
                 .HasOne(e => e.Department)
                 .WithMany()//
                 .HasForeignKey(e => e.DepartmentId)
-                .HasConstraintName($"fk_f_discipline_id")
+                .HasConstraintName($"fk_f_department_id")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable(_tableName)
-                .HasIndex(e => e.DepartmentId, $"idx_{_tableName}_fk_f_discipline_id");
+                .HasIndex(e => e.DepartmentId, $"idx_{_tableName}_fk_f_department_id");
 
             builder.HasData(
                 new Discipline {

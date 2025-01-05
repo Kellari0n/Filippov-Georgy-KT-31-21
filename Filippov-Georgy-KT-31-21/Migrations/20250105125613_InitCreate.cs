@@ -49,7 +49,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                     c_first_name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     c_last_name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     d_birthdate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    d_employment_date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    d_employment = table.Column<DateTime>(type: "datetime", nullable: false),
                     c_email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     c_phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     f_degree_id = table.Column<int>(type: "int", nullable: true),
@@ -76,14 +76,14 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                 name: "cs_department",
                 columns: table => new
                 {
-                    degree_id = table.Column<int>(type: "int", nullable: false)
+                    department_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     c_name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     f_head_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_cs_department_department_id", x => x.degree_id);
+                    table.PrimaryKey("pk_cs_department_department_id", x => x.department_id);
                     table.ForeignKey(
                         name: "fk_f_head_id",
                         column: x => x.f_head_id,
@@ -108,7 +108,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
                         name: "fk_f_department_id",
                         column: x => x.f_department_id,
                         principalTable: "cs_department",
-                        principalColumn: "degree_id",
+                        principalColumn: "department_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -165,7 +165,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
 
             migrationBuilder.InsertData(
                 table: "cd_teachers",
-                columns: new[] { "teacher_id", "d_birthdate", "f_degree_id", "c_email", "d_employment_date", "c_first_name", "c_last_name", "c_phone", "f_post_id", "c_second_name" },
+                columns: new[] { "teacher_id", "d_birthdate", "f_degree_id", "c_email", "d_employment", "c_first_name", "c_last_name", "c_phone", "f_post_id", "c_second_name" },
                 values: new object[,]
                 {
                     { 1, new DateTime(1980, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "ivanov.aleksey@university.com", new DateTime(2010, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Алексей", "Петрович", "+7-900-123-4567", 3, "Иванов" },
@@ -180,7 +180,7 @@ namespace Filippov_Georgy_KT_31_21.Migrations
 
             migrationBuilder.InsertData(
                 table: "cs_department",
-                columns: new[] { "degree_id", "f_head_id", "c_name" },
+                columns: new[] { "department_id", "f_head_id", "c_name" },
                 values: new object[,]
                 {
                     { 1, 1, "Кафедра математики" },
