@@ -7,10 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Filippov_Georgy_KT_31_21.DepartmentService;
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
+public class Program {
+    public static void Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
         builder.AddServiceDefaults();
 
@@ -22,22 +20,23 @@ public class Program
         builder.Services.AddDbContextFactory<DepartmentsDbContext>(options => {
             options.UseSqlite(builder.Configuration.GetConnectionString("Departments"));
         });
-        
+
         builder.Services.AddAutoMapper(cfg => {
             cfg.CreateMap<Department, DepartmentCrudDto>();
+            cfg.CreateMap<DepartmentCrudDto, Department>();
         });
 
-        builder.Services.AddScoped<GetDepartmentsByFilterQuery>();
+        builder.Services.AddHttpClient("teacher_service", x=> x.BaseAddress = new Uri(Environment.GetEnvironmentVariable("services__teacherservice__https__0") ?? throw new InvalidOperationException()));
         
+        builder.Services.AddScoped<GetDepartmentsByFilterQuery>();
+
         var app = builder.Build();
 
         app.MapDefaultEndpoints();
 
         // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
+        if (app.Environment.IsDevelopment()) {
             app.MapOpenApi();
-            app.MapGet("/", () => "Test");
         }
 
         app.UseHttpsRedirection();

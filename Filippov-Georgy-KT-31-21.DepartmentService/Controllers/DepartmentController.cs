@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace Filippov_Georgy_KT_31_21.DepartmentService.Controllers;
 
 [ApiController]
-[Route("[controller]")]
 public class DepartmentController : ControllerBase {
     private readonly GetDepartmentsByFilterQuery _getDepartmentsByFilterQuery;
     

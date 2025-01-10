@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Filippov-Georgy-KT-31-21.Domain\Filippov-Georgy-KT-31-21.Domain.csproj" />
     <ProjectReference Include="..\Filippov-Georgy-KT-31-21\Filippov-Georgy-KT-31-21.csproj" />
   </ItemGroup>
 

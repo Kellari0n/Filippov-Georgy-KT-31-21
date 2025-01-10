@@ -1,7 +1,5 @@
-﻿using Filippov_Georgy_KT_31_21.Context;
-using Filippov_Georgy_KT_31_21.Entities;
+﻿using Filippov_Georgy_KT_31_21.Entities;
 using Filippov_Georgy_KT_31_21.Filters.Models;
-using Filippov_Georgy_KT_31_21.Services.Implementation;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;

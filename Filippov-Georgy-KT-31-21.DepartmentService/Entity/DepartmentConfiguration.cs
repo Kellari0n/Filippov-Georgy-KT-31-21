@@ -14,18 +14,18 @@ internal class DepartmentConfiguration : IEntityTypeConfiguration<Department> {
 
         builder.Property(e => e.Id)
             .HasColumnName($"department_id")
-            .HasColumnType(SqliteColumnType.Integer)
+            .HasColumnType(SqliteColumnType.Int)
             .ValueGeneratedOnAdd();
 
         builder.Property(e => e.Name)
             .HasColumnName($"c_name")
-            .HasColumnType(SqliteColumnType.Text)
+            .HasColumnType(SqliteColumnType.String)
             .HasMaxLength(50)
             .IsRequired();
 
         builder.Property(e => e.HeadId)
             .HasColumnName($"f_head_id")
-            .HasColumnType(SqliteColumnType.Integer);
+            .HasColumnType(SqliteColumnType.Int);
 
         builder.HasData(
             new Department {

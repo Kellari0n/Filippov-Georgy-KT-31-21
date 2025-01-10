@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Filippov_Georgy_KT_31_21.DepartmentService;
 
-public class DepartmentsDbContext : DbContext {
+public sealed class DepartmentsDbContext : DbContext {
     public DbSet<Department> Departments { get; set; }
 
     public DepartmentsDbContext() {
